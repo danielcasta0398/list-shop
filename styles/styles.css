@@ -98,6 +98,7 @@ nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid #b3b3b3;
 
 }
 
@@ -105,4 +106,10 @@ nav{
     display: flex;
     gap: 15px;
     align-items: center;
+}
+
+.icon-star{
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
