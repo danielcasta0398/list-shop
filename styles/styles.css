@@ -86,14 +86,15 @@ nav{
 }
 
 .list-products{
-    margin: 20px 15px
+    margin: 20px 15px;
+    font-size: 20px;
 }
 
 .list-products ul li {
     list-style: none;
     width: 100%;
     background-color: antiquewhite;
-    padding: 10px 10px;
+    padding: 15px 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
