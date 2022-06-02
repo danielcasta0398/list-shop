@@ -84,3 +84,24 @@ nav{
     background-color: transparent;
     border: none;
 }
+
+.list-products{
+    margin: 20px 15px
+}
+
+.list-products ul li {
+    list-style: none;
+    width: 100%;
+    background-color: antiquewhite;
+    padding: 10px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.icon-delete{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
