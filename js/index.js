@@ -16,23 +16,53 @@ const changeState = (event) => {
 };
 //La segunda funcion hace funcionar el boton de agregar producto dentro del popUp
 
-const objetcList = {
-  products: ["Agua", "Leche"],
-  nameMarket: "Mercadona",
+let data = localStorage.getItem("data");
+let dataObject = JSON.parse(data)
+
+if (!data) {
+  const objetcList = {
+    products: [],
+    nameMarket: [],
+  };
+
+  localStorage.setItem("data", JSON.stringify(objetcList));
+ 
+}
+
+//localStorage.removeItem('data')
+
+const updateData = (producto) => {
+    
+    dataObject.products.push( producto )     
+  
+    localStorage.setItem("data", JSON.stringify(dataObject));
+  /* localStorage.setItem('data', JSON.stringify(objetcList));
+    let data = localStorage.getItem('data')
+    let dataObject = JSON.parse(data)*/
 };
 
-const listProsuct = () => {
-  objetcList.products.map((e) => {
+const listProduct = () => {
+  dataObject.products.map((product) => {
     const app = document.querySelector("#list");
     const list = document.createElement("li");
-    list.innerHTML = `<div class="icon-star"><i class="fa-regular fa-star"></i>${e}</div>
-    <div class="icon-delete"><i class="fa-regular fa-trash-can"></i><i class="fa-solid fa-chevron-down"></i></div>`;
+    list.innerHTML = `
+    <div class="icon-star"><i class="fa-regular fa-star">
+     </i>${product}
+    </div>
+    <div class="icon-delete">
+    <button onclick="deleteProduct(event)"><i class="fa-regular fa-trash-can"></i></button>     
+     <i class="fa-solid fa-chevron-down"></i>
+    </div>`;
 
     app.insertAdjacentElement("beforeend", list);
   });
 };
 
-const deleteProducts = () => {
+const deleteProduct = ( event ) =>{
+    console.log(event.path[3].innerText);
+}
+
+const resetProducts = () => {
   const element = document.getElementById("list");
   while (element.firstChild) {
     element.removeChild(element.firstChild);
@@ -40,13 +70,12 @@ const deleteProducts = () => {
 };
 
 const addProduct = () => {
-  const app = document.querySelector("#list");
   let product = document.getElementById("product").value;
-  objetcList.products.push(product);
+  updateData(product);
   changeState();
   document.getElementById("product").value = "";
-  deleteProducts()
-  listProsuct()
+  resetProducts();
+  listProduct();
 };
 
-listProsuct();
+listProduct();
