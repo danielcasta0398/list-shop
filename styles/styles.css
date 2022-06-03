@@ -70,6 +70,7 @@ nav{
     margin: 15px;
     border: none;  
     z-index: -2;
+    color: black;
 }
 
 .buttons-add{
