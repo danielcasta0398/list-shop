@@ -3,7 +3,7 @@
 const changeState = (event) => {
   //El evento se encarga de capturar el click
   //event.stopPropagation lo que hace es detener el evento del hijo
-   //event.stopPropagation
+  //event.stopPropagation
 
   let popUp = document.getElementById("addPopUp");
   //El if es para hacer que el boton de + abra el popUp y el else es para que se cierre
@@ -17,7 +17,6 @@ const changeState = (event) => {
 //La segunda funcion hace funcionar el boton de agregar producto dentro del popUp
 
 let data = localStorage.getItem("data");
-let dataObject = JSON.parse(data)
 
 if (!data) {
   const objetcList = {
@@ -28,16 +27,16 @@ if (!data) {
   localStorage.setItem("data", JSON.stringify(objetcList));
 }
 
-//localStorage.removeItem('data')
+let dataObject = JSON.parse(localStorage.getItem("data"));;
 
-const updateData = (product) => {    
-  
-  dataObject.products.push( product)     
-  
-    //localStorage.setItem("data", JSON.stringify(dataObject));
-  /* localStorage.setItem('data', JSON.stringify(objetcList));
-    let data = localStorage.getItem('data')
-    let dataObject = JSON.parse(data)*/
+const updateData = (product) => {
+
+  console.log(dataObject);
+  dataObject.products.push(product);
+  localStorage.setItem("data", JSON.stringify(dataObject));
+
+  data = localStorage.getItem("data");
+  dataObject = JSON.parse(data);
 };
 
 const listProduct = () => {
@@ -57,9 +56,9 @@ const listProduct = () => {
   });
 };
 
-const deleteProduct = ( event ) =>{
-    console.log(event.path[3].innerText);
-}
+const deleteProduct = (event) => {
+  console.log(event.path[3].innerText);
+};
 
 const resetProducts = () => {
   const element = document.getElementById("list");
@@ -70,12 +69,11 @@ const resetProducts = () => {
 
 const addProduct = () => {
   let product = document.getElementById("product").value;
-  updateData(product); 
+  updateData(product);
   document.getElementById("product").value = "";
   resetProducts();
-  changeState();  
-  listProduct();  
-  
+  changeState();
+  listProduct();
 };
 
 listProduct();
