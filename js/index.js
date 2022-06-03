@@ -3,7 +3,7 @@
 const changeState = (event) => {
   //El evento se encarga de capturar el click
   //event.stopPropagation lo que hace es detener el evento del hijo
-  //event.stopPropagation
+   //event.stopPropagation
 
   let popUp = document.getElementById("addPopUp");
   //El if es para hacer que el boton de + abra el popUp y el else es para que se cierre
@@ -26,16 +26,15 @@ if (!data) {
   };
 
   localStorage.setItem("data", JSON.stringify(objetcList));
- 
 }
 
 //localStorage.removeItem('data')
 
-const updateData = (producto) => {
-    
-    dataObject.products.push( producto )     
+const updateData = (product) => {    
   
-    localStorage.setItem("data", JSON.stringify(dataObject));
+  dataObject.products.push( product)     
+  
+    //localStorage.setItem("data", JSON.stringify(dataObject));
   /* localStorage.setItem('data', JSON.stringify(objetcList));
     let data = localStorage.getItem('data')
     let dataObject = JSON.parse(data)*/
@@ -71,11 +70,12 @@ const resetProducts = () => {
 
 const addProduct = () => {
   let product = document.getElementById("product").value;
-  updateData(product);
-  changeState();
+  updateData(product); 
   document.getElementById("product").value = "";
   resetProducts();
-  listProduct();
+  changeState();  
+  listProduct();  
+  
 };
 
 listProduct();
