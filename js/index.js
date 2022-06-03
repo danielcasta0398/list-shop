@@ -27,11 +27,9 @@ if (!data) {
   localStorage.setItem("data", JSON.stringify(objetcList));
 }
 
-let dataObject = JSON.parse(localStorage.getItem("data"));;
+let dataObject = JSON.parse(localStorage.getItem("data"));
 
 const updateData = (product) => {
-
-  console.log(dataObject);
   dataObject.products.push(product);
   localStorage.setItem("data", JSON.stringify(dataObject));
 
@@ -57,7 +55,15 @@ const listProduct = () => {
 };
 
 const deleteProduct = (event) => {
-  console.log(event.path[3].innerText);
+  let nameProduct = event.path[3].innerText;
+  for (let i = 0; i < dataObject.products.length; i++) {
+    if (nameProduct === dataObject.products[i]) {
+      dataObject.products.splice(i, 1);
+    }
+  }
+  localStorage.setItem("data", JSON.stringify(dataObject));
+  resetProducts();
+  listProduct();
 };
 
 const resetProducts = () => {
@@ -69,11 +75,14 @@ const resetProducts = () => {
 
 const addProduct = () => {
   let product = document.getElementById("product").value;
-  updateData(product);
-  document.getElementById("product").value = "";
-  resetProducts();
-  changeState();
-  listProduct();
+  if (product) {
+    updateData(product);
+    document.getElementById("product").value = "";
+    resetProducts();
+    changeState();
+    listProduct();
+  }
+
 };
 
 listProduct();
