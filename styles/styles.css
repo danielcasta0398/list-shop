@@ -1,127 +1,141 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 
-*{
-    padding: 0px;
-    margin: 0px;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
 }
 
-nav{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: darkgray;
-    padding: 15px 20px;
-    font-size: 25px;
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: darkgray;
+  padding: 15px 20px;
+  font-size: 25px;
 }
 
-#addPopUp{
-    width: 100vw;
-    height: 100vh;       
-    display: none;
-    position: absolute ;
-    background-color: rgb(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;    
-    z-index: 2;
+#addPopUp {
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  position: absolute;
+  background-color: rgb(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
 }
 
-
-#addPopUp > div{
-    background-color: white;  
-    width: 80%;       
-    padding: 15px;
-    border-radius: 10px;
-    color: #6cbbff;
-    z-index: 3;
-}   
+#addPopUp > div {
+  background-color: white;
+  width: 80%;
+  padding: 15px;
+  border-radius: 10px;
+  color: #6cbbff;
+  z-index: 3;
+}
 
 #product {
-    margin-top: 20px;
-    border: none;
-    border-bottom: 1px solid #6cbbff;
-    width: 100%;
-    font-size: 18px;
-    outline: none;
+  margin-top: 20px;
+  border: none;
+  border-bottom: 1px solid #6cbbff;
+  width: 100%;
+  font-size: 18px;
+  outline: none;
 }
 
-#product::placeholder{
-    color: #d0d0d0;
+#product::placeholder {
+  color: #d0d0d0;
 }
 
-#button-add-text{
-    color: #6cbbff;
-    font-weight: 500;
+#button-add-text {
+  color: #6cbbff;
+  font-weight: 500;
 }
 
-#add{
-    width: 60px;
-    height: 60px;
-    background-color: cadetblue;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 30px;
-    position: absolute;
-    right: 0px;
-    bottom: 0px;
-    margin: 15px;
-    border: none;  
-    z-index: -2;
-    color: black;
+#add {
+  width: 60px;
+  height: 60px;
+  background-color: cadetblue;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  margin: 15px;
+  border: none;
+  z-index: -2;
+  color: black;
 }
 
-.buttons-add{
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 20px;
-    gap: 15px;    
+.buttons-add {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  gap: 15px;
 }
 
-.buttons-add button{
-    font-size: 18px;
-    background-color: transparent;
-    border: none;
+.buttons-add button {
+  font-size: 18px;
+  background-color: transparent;
+  border: none;
 }
 
-.list-products{
-    margin: 20px 15px;
-    font-size: 20px;
+.list-products {
+  margin: 20px 15px;
+  font-size: 20px;
 }
 
 .list-products ul li {
-    list-style: none;
-    width: 100%;
-    background-color: antiquewhite;
-    padding: 15px 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #b3b3b3;
-
+  list-style: none;
+  width: 100%;
+  background-color: antiquewhite;
+  padding: 15px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #b3b3b3;
 }
 
-.icon-delete{
-    display: flex;
-    gap: 15px;
-    align-items: center;
+.icon-delete {
+  display: flex;
+  gap: 15px;
+  align-items: center;
 }
 
-.icon-delete button{
-    color: black;
-    cursor: pointer;
+.icon-delete button {
+  color: black;
+  cursor: pointer;
 }
 
-.icon-star{
-    display: flex;
-    align-items: center;
-    gap: 15px;
+.icon-star {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
-.icon-delete button{
-    background-color: transparent;
-    border: none;
-    font-size: 20px;
+.icon-delete button {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+}
+
+#menu {
+  background-color: rgb(0, 0, 0, 0.5);
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  left: -100%;
+  transition: all  0.40s;
+}
+
+#menu > div {
+  width: 65%;
+  height: 100vh;
+  background-color: white;
+  z-index: 20;
 }
