@@ -130,7 +130,7 @@ nav {
   height: 100vh;
   position: absolute;
   left: -100%;
-  transition: all  0.40s;
+  transition: all  0.20s;
 }
 
 #menu > div {
