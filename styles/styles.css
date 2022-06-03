@@ -108,6 +108,11 @@ nav{
     align-items: center;
 }
 
+.icon-delete button{
+    color: black;
+    cursor: pointer;
+}
+
 .icon-star{
     display: flex;
     align-items: center;
