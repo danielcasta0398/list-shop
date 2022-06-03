@@ -88,10 +88,11 @@ const addProduct = () => {
 const viewMenu = () =>{
   let menu = document.getElementById('menu')
 
-  if ( menu.style.left == "" || menu.style.left == '-100%' ) {
-    menu.style.left = '0'
+  if ( menu.style.display == "" /*|| menu.style.left == '-100%'*/ ) {
+    menu.style.display = 'block'
+    menu.style.opacity= '1'
   }else{
-    menu.style.left = '-100%'
+    menu.style.display = ''
   }
  
 }
