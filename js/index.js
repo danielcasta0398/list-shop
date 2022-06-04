@@ -41,7 +41,7 @@ const listProduct = () => {
   dataObject.products.map((product) => {
     const app = document.querySelector("#list");
     const list = document.createElement("li");
-    list.innerHTML = `
+    list.innerHTML += `
     <div class="icon-star"><i class="fa-regular fa-star">
      </i>${product}
     </div>
@@ -55,12 +55,13 @@ const listProduct = () => {
 };
 
 const deleteProduct = (event) => {
-  let nameProduct = event.path[3].innerText;
+  let nameProduct = event.path[3].innerText;  
   for (let i = 0; i < dataObject.products.length; i++) {
-    if (nameProduct === dataObject.products[i]) {
+    if (nameProduct.trim() == dataObject.products[i].trim()) {
       dataObject.products.splice(i, 1);
     }
   }
+
   localStorage.setItem("data", JSON.stringify(dataObject));
   resetProducts();
   listProduct();
@@ -82,19 +83,16 @@ const addProduct = () => {
     changeState();
     listProduct();
   }
-
 };
 
-const viewMenu = () =>{
-  let menu = document.getElementById('menu')
+const viewMenu = () => {
+  let menu = document.getElementById("menu");
 
-  if ( menu.style.left == "" || menu.style.left == '-100%' ) {
-    menu.style.left = '0'
-   
-  }else{
-    menu.style.left = '-100%'
+  if (menu.style.left == "" || menu.style.left == "-100%") {
+    menu.style.left = "0";
+  } else {
+    menu.style.left = "-100%";
   }
- 
-}
+};
 
 listProduct();
