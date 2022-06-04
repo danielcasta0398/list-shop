@@ -1,5 +1,3 @@
-let stateChevron = false;
-
 //La primera funcion hace funcionar el boton de + para agregar un producto
 //const es una manera distinta de escribir una funcion (similar al function ()) y se llama funcion flecha
 const changeState = (event) => {
@@ -49,18 +47,19 @@ const listProduct = () => {
     </div>
     <div class="icon-delete">
     <button onclick="deleteProduct(event)"><i class="fa-regular fa-trash-can"></i></button>     
-     <i id="chevron" class="fa-solid fa-chevron-down" onclick="changeChevron()"></i>
+     <i id="chevron" class="fa-solid fa-chevron-down" onclick="changeChevron(event)"></i>
     </div>`;
 
     app.insertAdjacentElement("beforeend", list);
   });
 };
 
-const changeChevron = () => {
-  stateChevron
-    ? (chevron.style.transform = "matrix(1, 0, 0, 1, 0, 0)")
-    : (chevron.style.transform = "matrix(-1, 0, 0, -1, 0, 0)");
-  stateChevron = !stateChevron;
+const changeChevron = (event) => {
+  let prueba = event.path[0].style.transform;
+
+  prueba == "matrix(-1, 0, 0, -1, 0, 0)"
+    ? (event.path[0].style.transform = "matrix(1, 0, 0, 1, 0, 0)")
+    : (event.path[0].style.transform = "matrix(-1, 0, 0, -1, 0, 0)");
 };
 
 const deleteProduct = (event) => {
