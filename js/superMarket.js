@@ -1,3 +1,15 @@
+let data = localStorage.getItem("data");
+
+if (!data) {
+  const objetcList = {
+    products: [],
+    nameMarket: [],
+    favoriteProducts:[],
+  };
+
+  localStorage.setItem("data", JSON.stringify(objetcList));
+}
+
 let dataObject = JSON.parse(localStorage.getItem("data"));
 console.log(dataObject);
 
@@ -5,10 +17,12 @@ const changeStateMarket = (event) => {
   //El evento se encarga de capturar el click
   //event.stopPropagation lo que hace es detener el evento del hijo
 // console.log(event.ta);       
-    let popUp = document.getElementById("addPopUpMarket");   
+    let popUp = document.getElementById("addPopUpMarket");  
+    
   //El if es para hacer que el boton de + abra el popUp y el else es para que se cierre
 if (popUp.style.display == "") {
-    popUp.style.display = "flex";     
+    popUp.style.display = "flex";
+    document.getElementById("market").focus();      
   } else {
     popUp.style.display = "";
   }

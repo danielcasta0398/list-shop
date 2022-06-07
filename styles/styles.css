@@ -110,6 +110,14 @@ nav {
   
 }
 
+.fa-star{
+  color: black;
+}
+
+.star{
+  color: #f0ca0a;
+}
+
 .list-products ul li {
   list-style: none;
   width: 100%;

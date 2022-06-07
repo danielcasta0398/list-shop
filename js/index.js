@@ -25,6 +25,7 @@ if (!data) {
   const objetcList = {
     products: [],
     nameMarket: [],
+    favoriteProducts:[],
   };
 
   localStorage.setItem("data", JSON.stringify(objetcList));
@@ -32,8 +33,13 @@ if (!data) {
 
 let dataObject = JSON.parse(localStorage.getItem("data"));
 console.log(dataObject);
+
 const updateData = (product) => {
-  dataObject.products.push(product);
+  let infoProduct = {
+    name: product,
+    class: "fa-regular"
+  }
+  dataObject.products.push(infoProduct);
   localStorage.setItem("data", JSON.stringify(dataObject));
 
   data = localStorage.getItem("data");
@@ -41,13 +47,13 @@ const updateData = (product) => {
 };
 
 const listProduct = () => {
-  dataObject.products.map((product) => {
+  dataObject.products.map((product) => {    
     const app = document.querySelector("#list");
     const list = document.createElement("li");
     list.innerHTML += `
     <div style="display: flex; justify-content: space-between">
-    <div class="icon-star"><i class="fa-regular fa-star">
-     </i>${product}
+    <div class="icon-star"><i class="fa-star ${product.class}" onclick="favorite(event)">
+     </i>${product.name}
     </div>
     <div class="icon-delete">
     <button onclick="deleteProduct(event)"><i class="fa-regular fa-trash-can"></i></button>     
@@ -59,7 +65,51 @@ const listProduct = () => {
     app.insertAdjacentElement("beforeend", list);
     
   });
+
+ 
 };
+
+
+
+const favorite = (event) => {
+  let element = event.target 
+  let contentClass = event.path[0].className
+  let nameClass;
+  console.log(contentClass);
+
+  data = localStorage.getItem("data");
+  dataObject = JSON.parse(data);
+   
+   console.log(event.path[2].innerText);    
+   if (contentClass == 'fa-star fa-regular') {
+    element.classList.remove('fa-regular')
+    element.classList.add('fa-solid')
+    element.classList.add('star')
+    nameClass = 'fa-solid star'
+   }else{
+    element.classList.remove('fa-solid')
+    element.classList.add('fa-regular')
+    element.classList.remove('star')
+    nameClass = 'fa-star fa-regular'
+   }
+
+   for (let i = 0; i < dataObject.products.length; i++) {
+    if ( dataObject.products[i].name == event.path[2].innerText ) {
+      dataObject.products[i].class = nameClass     
+    } 
+   
+   }
+  
+   let favoriteProduct = {
+    name: event.path[2].innerText,
+    class: nameClass
+  }
+  
+  dataObject.favoriteProducts.push(favoriteProduct);
+
+  localStorage.setItem("data", JSON.stringify(dataObject));
+  
+}
 
 
 const changeChevron = (event) => {
