@@ -14,17 +14,18 @@ nav {
   background-color: darkgray;
   padding: 15px 20px;
   font-size: 25px;
+  height: 55px;
 }
 
 #addPopUp {
   width: 100vw;
   height: 100vh;
   display: none;
-  position: absolute;
+  position: fixed;
   background-color: rgb(0, 0, 0, 0.5);
   justify-content: center;
   align-items: center;
-  z-index: 2;
+  z-index: 3;
 }
 
 #addPopUp > div {
@@ -33,10 +34,10 @@ nav {
   padding: 15px;
   border-radius: 10px;
   color: #6cbbff;
-  z-index: 3;
+  
 }
 
-#product {
+#product, #market{
   margin-top: 20px;
   border: none;
   border-bottom: 1px solid #6cbbff;
@@ -55,22 +56,17 @@ nav {
 }
 
 #add {
-  width: 60px;
-  height: 60px;
   background-color: cadetblue;
-  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 30px;
-  position: absolute;
-  right: 0px;
-  bottom: 0px;
-  margin: 15px;
+  font-size: 16px;  
   border: none;
-  z-index: -2;
+  z-index: 2;
   color: black;
-}
+  margin-top: -9px;
+  padding: 5px 15px;
+ }
 
 .buttons-add {
   display: flex;
@@ -88,6 +84,9 @@ nav {
 .list-products {
   margin: 20px 15px;
   font-size: 20px;
+  height: 75vh;   
+  overflow: scroll;
+  
 }
 
 .list-products ul li {
@@ -95,7 +94,6 @@ nav {
   width: 100%;
   background-color: antiquewhite;
   padding: 15px 10px;
-  display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #b3b3b3;
@@ -125,27 +123,34 @@ nav {
 }
 
 #menu {
-  background-color: rgb(0, 0, 0, 0.5);
   width: 100vw;
   height: 100vh;
   position: absolute;
   left: -100%;
   transition: all ease 0.25s;
+  z-index: 25;
+  top: 55px;
 }
 
 
 #menu > div {
-  width: 65%;
-  height: 100vh;
+  width: 100%;
+  height: 20%;
   background-color: white;
   z-index: 20;
- 
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  
 }
 
-#menu h3{
+#menu li{
     width: 100%;
     text-align: center;
     padding-top: 10px;
+    list-style-type: none; 
+    padding-top: 30px;
+    font-size: 20px;
 }
 
 .fa-chevron-down{
@@ -153,11 +158,15 @@ nav {
   transition: all 0.1s;  
 }
 
-@keyframes rotation {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(180deg);
-  }
+footer{
+  width: 100%;
+  height: 50px;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+ 
+}
+
+.more-info{
+  background-color: white;
 }

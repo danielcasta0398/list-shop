@@ -6,30 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/12a5aa7b3d.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./styles/styles.css">
-    <title>Lista De Compras</title>
+    <title>Supermercados</title>
 </head>
-<body>    
+<body>
     <div id="addPopUp"  onclick="changeState(event)">
         <div  onclick="changeState(event)">
-            <h2>Nombre del producto</h2>
-            <input id="product" type="text" placeholder="Nombre Producto" autocomplete="off" >
+            <h2>Nombre del supermercado</h2>
+            <input id="market" type="text" placeholder="Nombre Supermercado" autocomplete="off" >
             <div class="buttons-add">
                 <button onclick="changeState(event)">Cancelar</button>
-                <button id="button-add-text" onclick="addProduct()">Agregar</button>
+                <button id="button-add-text" onclick="addMarket()">Agregar</button>
             </div>
         </div>
     </div>
     <div id="menu" onclick="viewMenu()">
         <div onclick="viewMenu()">
             <ul>
-                <li><a href=""> Supermercados</a></li>
+                <li><a href=""> Lista de compras</a></li>
                 <li><a href=""> Productos favoritos</a></li>
         </ul>
         </div>
     </div>
     <nav>
         <i class="fa-solid fa-bars" onclick="viewMenu()"></i>
-        <h4>Lista De Compras</h4>
+        <h4>Lista De Supermercados</h4>
         <i class="fa-solid fa-filter"></i>
     </nav> 
     <div class="list-products">
@@ -38,7 +38,7 @@
         </ul>
     </div>
     <footer> 
-    <button id="add" onclick="changeState(event)"><i class="fa-solid fa-plus"></i> Agregar producto</button>
+    <button id="add" onclick="changeState(event)"><i class="fa-solid fa-plus"></i> Agregar supermercado</button>
     </footer>  
     <script src="./js/index.js"></script>
 </body>
