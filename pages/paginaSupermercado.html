@@ -5,16 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/12a5aa7b3d.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="stylesheet" href="../styles/styles.css">
     <title>Supermercados</title>
 </head>
 <body>
-    <div id="addPopUp"  onclick="changeState(event)">
-        <div  onclick="changeState(event)">
+    <div id="addPopUpMarket"  onclick="changeStateMarket()">
+        <div onclick="event.stopPropagation()">
             <h2>Nombre del supermercado</h2>
             <input id="market" type="text" placeholder="Nombre Supermercado" autocomplete="off" >
             <div class="buttons-add">
-                <button onclick="changeState(event)">Cancelar</button>
+                <button onclick="changeStateMarket(event)">Cancelar</button>
                 <button id="button-add-text" onclick="addMarket()">Agregar</button>
             </div>
         </div>
@@ -22,14 +22,14 @@
     <div id="menu" onclick="viewMenu()">
         <div onclick="viewMenu()">
             <ul>
-                <li><a href=""> Lista de compras</a></li>
+                <li><a href="../index.html"> Lista de compras</a></li>
                 <li><a href=""> Productos favoritos</a></li>
         </ul>
         </div>
     </div>
     <nav>
         <i class="fa-solid fa-bars" onclick="viewMenu()"></i>
-        <h4>Lista De Supermercados</h4>
+        <h4>Supermercados</h4>
         <i class="fa-solid fa-filter"></i>
     </nav> 
     <div class="list-products">
@@ -38,8 +38,8 @@
         </ul>
     </div>
     <footer> 
-    <button id="add" onclick="changeState(event)"><i class="fa-solid fa-plus"></i> Agregar supermercado</button>
+    <button id="add" onclick="changeStateMarket()"><i class="fa-solid fa-plus"></i> Agregar supermercado</button>
     </footer>  
-    <script src="./js/index.js"></script>
+    <script src="../js/superMarket.js"></script>
 </body>
 </html>

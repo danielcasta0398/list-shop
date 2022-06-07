@@ -37,6 +37,26 @@ nav {
   
 }
 
+#addPopUpMarket {
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  position: fixed;
+  background-color: rgb(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+}
+
+#addPopUpMarket > div {
+  background-color: white;
+  width: 80%;
+  padding: 15px;
+  border-radius: 10px;
+  color: #6cbbff;
+  
+}
+
 #product, #market{
   margin-top: 20px;
   border: none;
@@ -53,6 +73,7 @@ nav {
 #button-add-text {
   color: #6cbbff;
   font-weight: 500;
+  cursor: pointer;
 }
 
 #add {
@@ -151,6 +172,11 @@ nav {
     list-style-type: none; 
     padding-top: 30px;
     font-size: 20px;
+    
+}
+#menu li a{
+   text-decoration: none;
+   color: black;     
 }
 
 .fa-chevron-down{
