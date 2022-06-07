@@ -84,13 +84,7 @@ const favorite = (event) => {
    if (contentClass == 'fa-star fa-regular') {
     element.classList.remove('fa-regular')
     element.classList.add('fa-solid')
-    element.classList.add('star')
-    for (let i = 0; i < dataObject.products.length; i++) {
-      if ( dataObject.products[i].name.trim() == event.path[2].innerText.trim() ) {
-        dataObject.products[i].class = nameClass     
-      } 
-     
-     }
+    element.classList.add('star')  
     nameClass = 'fa-solid star'
    }else{
     element.classList.remove('fa-solid')
@@ -99,6 +93,12 @@ const favorite = (event) => {
     nameClass = 'fa-star fa-regular'
    }
 
+   for (let i = 0; i < dataObject.products.length; i++) {
+    if ( dataObject.products[i].name.trim() == event.path[2].innerText.trim() ) {
+      dataObject.products[i].class = nameClass     
+    } 
+   
+   }
 
   
    let favoriteProduct = {
