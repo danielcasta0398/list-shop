@@ -145,7 +145,7 @@ const deleteProduct = (event) => {
 
   let nameProduct = event.path[3].innerText;
   for (let i = 0; i < dataObject.products.length; i++) {
-    if (nameProduct.trim() == dataObject.products[i].trim()) {
+    if (nameProduct.trim() == dataObject.products[i].name.trim()) {
       dataObject.products.splice(i, 1);
     }
   }
