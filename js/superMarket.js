@@ -5,7 +5,7 @@ if (!data) {
     products: [],
     nameMarket: [],
     favoriteProducts:[],
-  };
+  }; 
 
   localStorage.setItem("data", JSON.stringify(objetcList));
 }
