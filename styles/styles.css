@@ -163,12 +163,14 @@ nav {
   position: absolute;
   z-index: 15;
   right: 20px;
+  border-radius: 8px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .divOptions button{
   border: none;
   background-color: transparent;
-  padding: 5px 10px;
+  padding: 5px 15px;
   font-size: 20px;
 }
 

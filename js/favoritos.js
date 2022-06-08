@@ -22,7 +22,7 @@ const changeStateMarket = (event) => {
   //El if es para hacer que el boton de + abra el popUp y el else es para que se cierre
 if (popUp.style.display == "") {
     popUp.style.display = "flex";
-    document.getElementById("market").focus();      
+    document.getElementById("favProduct").focus();      
   } else {
     popUp.style.display = "";
   }
