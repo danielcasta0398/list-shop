@@ -57,7 +57,7 @@ nav {
   
 }
 
-#product, #market{
+#product, #market, #favProduct{
   margin-top: 20px;
   border: none;
   border-bottom: 1px solid #6cbbff;
@@ -145,6 +145,34 @@ nav {
   gap: 15px;
 }
 
+.icon-plus{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-left: 15px;
+}
+
+.listOptions{
+  position: relative;
+}
+
+.divOptions{  
+  display: flex;
+  flex-direction: column;  
+  background-color: pink;
+  position: absolute;
+  z-index: 15;
+  right: 20px;
+}
+
+.divOptions button{
+  border: none;
+  background-color: transparent;
+  padding: 5px 10px;
+
+}
+
+
 .icon-delete button {
   background-color: transparent;
   border: none;
@@ -190,6 +218,10 @@ nav {
 .fa-chevron-down{
   transform: matrix(1, 0, 0, 1, 0, 0);
   transition: all 0.1s;  
+}
+
+.fa-pen-to-square{
+  margin-right: 10px;
 }
 
 footer{

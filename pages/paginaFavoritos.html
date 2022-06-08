@@ -6,16 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/12a5aa7b3d.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../styles/styles.css">
-    <title>Supermercados</title>
+    <title>Favoritos</title>
 </head>
 <body>
     <div id="addPopUpMarket"  onclick="changeStateMarket()">
         <div onclick="event.stopPropagation()">
-            <h2>Nombre del supermercado</h2>
-            <input id="market" type="text" placeholder="Nombre Supermercado" autocomplete="off" >
+            <h2>Producto Favorito</h2>
+            <input id="favProduct" type="text" placeholder="Producto Favorito" autocomplete="off" >
             <div class="buttons-add">
                 <button onclick="changeStateMarket(event)">Cancelar</button>
-                <button id="button-add-text" onclick="addMarket()">Agregar</button>
+                <button id="button-add-text" onclick="addFavorites()">Agregar</button>
             </div>
         </div>
     </div>
@@ -23,14 +23,16 @@
         <div onclick="viewMenu()">
             <ul>
                 <li><a href="../index.html"> Lista de compras</a></li>
-                <li><a href="../paginaFavoritos.html"> Productos favoritos</a></li>
+                <li><a href="../pages/paginaSupermercado.html">Supermercados</a></li>
         </ul>
         </div>
     </div>
     <nav>
         <i class="fa-solid fa-bars" onclick="viewMenu()"></i>
-        <h4>Supermercados</h4>
-        <i class="fa-solid fa-filter"></i>
+        <h4>Favoritos</h4>
+        <div>
+
+        </div>
     </nav> 
     <div class="list-products">
         <ul id="list">
@@ -38,8 +40,8 @@
         </ul>
     </div>
     <footer> 
-    <button id="add" onclick="changeStateMarket()"><i class="fa-solid fa-plus"></i> Agregar supermercado</button>
+    <button id="add" onclick="changeStateMarket()"><i class="fa-solid fa-plus"></i>Agregar favoritos</button>
     </footer>  
-    <script src="../js/superMarket.js"></script>
+    <script src="../js/favoritos.js"></script>
 </body>
 </html>
