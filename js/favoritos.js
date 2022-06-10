@@ -1,4 +1,6 @@
 let data = localStorage.getItem("data");
+let nameProductSelected ="";
+let indiceProduct ;
 
 if (!data) {
   const objetcList = {
@@ -124,7 +126,18 @@ const addFavorites = () => {
 };
 
 const options = (event) => {
+
+  nameProductSelected = event.path[3].innerText
   let divOptions = event.path[4].lastElementChild
+
+  
+
+  for (let a = 0; a < dataObject.favoriteProducts.length; a++) {
+   
+    if (dataObject.favoriteProducts[a].name.trim() == nameProductSelected.trim()) {
+      indiceProduct = a
+    }
+  }
 
  
   let background = document.getElementsByClassName("background-options")[0];
@@ -145,7 +158,7 @@ const options = (event) => {
     background.style.display = 'none';
   }
   
-  console.log(event.path[5].children);
+ 
 }
 
 const closeOptions = (event) => 
@@ -164,8 +177,12 @@ const closeOptions = (event) =>
   }
 }
 
+
 const openPopupMarket = (event) =>
 {
+
+  console.log(dataObject.favoriteProducts[indiceProduct].market[0].price);
+ 
   //activar el div de fondo
   let background = document.getElementsByClassName("favoriteMarket")[0];
   background.style.display = "flex";
@@ -175,11 +192,11 @@ const openPopupMarket = (event) =>
   divMarket.classList.add("marketPopup");
    //crear lista
    let texto = 
-  `<div id='iconClose' onclick='closeAll()'><i class="fa-solid fa-xmark"></i></div><ul>`;
+  `<div id='iconClose' onclick='closeAll()'><i class="fa-solid fa-xmark"></i></div><ul id='favoriteListMarket'>`;
   //coger la lista de supermercados
-  dataObject.nameMarket.map(market => {
+  dataObject.nameMarket.map((market, indice) => {
     texto +=
-    `<li><div class='contentCheck'><input type='checkbox' value=${market}> <p>${market}</p></div> <div class='price'><input type='number' style='width: 70px;'>€</div></li>`
+    `<li><div class='contentCheck'><input id='check${indice}' type='checkbox' value=${market}> <p>${market}</p></div> <div class='price'><input type='number' id='price${indice}' value='' style='width: 70px;'>€</div></li>`
   })
   //crear botones aceptar y cancelar
   texto += "</ul><div id='saveMarketsDiv'><button onclick='saveMarkets(event)' id='saveMarketsButton'>Guardar</button></div>";
@@ -197,10 +214,28 @@ const closeAll = () =>{
 
 const saveMarkets = (event) =>
 {
+  console.log(document.getElementById('favoriteListMarket').children);
+  let listMarket = document.getElementById('check0')
+
+  
+  for (let i = 0; i < document.getElementById('favoriteListMarket').children.length; i++) {
+    if (document.getElementById(`check${i}`).checked === true) {
+      let objectMarket = {
+        nameMarket: dataObject.nameMarket[i],
+        price: document.getElementById(`price${i}`).value
+      }      
+       dataObject.favoriteProducts[indiceProduct].market.push(objectMarket)
+       
+    }      
+    //console.log(event);
+  }
+
+  localStorage.setItem("data", JSON.stringify(dataObject));
   //ver los mercados que están checkeados
   //guardarlos en el objeto
   //si tienen precio guardarlos
   //cerrar el div
+  closeAll();
 }
 
 listMarkets();
