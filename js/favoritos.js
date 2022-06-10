@@ -189,6 +189,12 @@ const openPopupMarket = (event) =>
   app.insertAdjacentElement("beforeend", divMarket);
 }
 
+const closeAll = () =>{
+  let closePopUpMarket = document.getElementsByClassName('favoriteMarket')[0];
+  closePopUpMarket.style.display = 'none';
+  closePopUpMarket.innerHTML ="";
+}
+
 const saveMarkets = (event) =>
 {
   //ver los mercados que están checkeados
