@@ -51,9 +51,9 @@ const listMarkets = () => {
       </div>
       </div>
       <div class="divOptions">
-      <button> Supermercado </button>
-      <button> Editar </button>
-      <button> Eliminar </button>
+      <button onclick="openPopupMarket()"> Supermercado </button>
+      <button onclick="editFavorite()"> Editar </button>
+      <button onclick="deleteFavorite()"> Eliminar </button>
       
       </div>
       
@@ -124,8 +124,77 @@ const addFavorites = () => {
 };
 
 const options = (event) => {
-  console.log(event);
+  let divOptions = event.path[4].lastElementChild
+
+ 
+  let background = document.getElementsByClassName("background-options")[0];
+  if (divOptions.style.display == "") {
+    for (let i = 0; i < event.path[5].children.length; i++) {
+       
+      if (event.path[5].children[i].lastElementChild.style.display == 'flex') {
+        event.path[5].children[i].lastElementChild.style.display = ""
+      }      
+
+      console.log(event.path[5].children[i].lastElementChild);
+    }
+     divOptions.style.display = 'flex'
+     
+     background.style.display = 'block';
+  }else{
+    divOptions.style.display = '';
+    background.style.display = 'none';
+  }
+  
+  console.log(event.path[5].children);
 }
 
+const closeOptions = (event) => 
+{
+  let background = document.getElementsByClassName("background-options")[0];
+  background.style.display = 'none';
+  
+  let lista = document.getElementsByClassName("listOptions");
+  for (let i = 0; i < lista.length; i++) {
+       
+    if (lista[i].lastElementChild.style.display == 'flex') {
+      lista[i].lastElementChild.style.display = ""
+    }      
+
+    console.log(lista[i].lastElementChild);
+  }
+}
+
+const openPopupMarket = (event) =>
+{
+  //activar el div de fondo
+  let background = document.getElementsByClassName("favoriteMarket")[0];
+  background.style.display = "flex";
+  //crear el div
+  let app = document.getElementsByClassName("favoriteMarket")[0];
+  let divMarket = document.createElement("div");
+  divMarket.classList.add("marketPopup");
+   //crear lista
+   let texto = 
+  `<div id='iconClose' onclick='closeAll()'><i class="fa-solid fa-xmark"></i></div><ul>`;
+  //coger la lista de supermercados
+  dataObject.nameMarket.map(market => {
+    texto +=
+    `<li><div class='contentCheck'><input type='checkbox' value=${market}> <p>${market}</p></div> <div class='price'><input type='number' style='width: 70px;'>€</div></li>`
+  })
+  //crear botones aceptar y cancelar
+  texto += "</ul><div id='saveMarketsDiv'><button onclick='saveMarkets(event)' id='saveMarketsButton'>Guardar</button></div>";
+  divMarket.innerHTML = texto;
+ 
+  //añadirlo al div
+  app.insertAdjacentElement("beforeend", divMarket);
+}
+
+const saveMarkets = (event) =>
+{
+  //ver los mercados que están checkeados
+  //guardarlos en el objeto
+  //si tienen precio guardarlos
+  //cerrar el div
+}
 
 listMarkets();
