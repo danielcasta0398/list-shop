@@ -196,7 +196,7 @@ const openPopupMarket = (event) =>
   //coger la lista de supermercados
   dataObject.nameMarket.map((market, indice) => {
     texto +=
-    `<li><div class='contentCheck'><input id='check${indice}' type='checkbox' value=${market}> <p>${market}</p></div> <div class='price'><input type='number' id='price${indice}' value='' style='width: 70px;'>€</div></li>`
+    `<li><div class='contentCheck'><input id='check${indice}' type='checkbox' value=${market}> <p>${market}</p></div> <div class='price'><input type='number' id='price${indice}' value='${dataObject.favoriteProducts[indiceProduct].market[indice].price}' style='width: 70px;'>€</div></li>`
   })
   //crear botones aceptar y cancelar
   texto += "</ul><div id='saveMarketsDiv'><button onclick='saveMarkets(event)' id='saveMarketsButton'>Guardar</button></div>";
