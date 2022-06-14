@@ -188,7 +188,8 @@ const addProduct = () => {
   //Antes de agregar el producto se crea una funcion que vuelva toda la palabra en minuscula y ponga solo la primera letra en mayuscula
   let product = document.getElementById("product").value.toLowerCase()
   product = product.charAt(0).toUpperCase() + product.substring(1);
-
+  
+  console.log(product);
   if (product) {
     for (let i = 0; i < dataObject.products.length; i++) {
       if (product.trim() == dataObject.products[i].name.trim()) {
