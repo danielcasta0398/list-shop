@@ -140,12 +140,46 @@ const changeChevron = (event) => {
 };
 
 const moreInfo = (event) => {
-  let info = event.path[3]
+  let info = event.path[3];
+  let actualProduct = info.innerText.trim();
   const div = document.createElement("div");
-  div.innerHTML = `<h5>Supermercado: ${dataObject.nameMarket[0]}</h5>`
-  console.log(info)
-  info.insertAdjacentElement("afterend", div);
+  let textoDiv = "<ul class='priceMarket'>";
+  let indexProduct;
+  for (let a = 0; a < dataObject.favoriteProducts.length; a++) {
+   // console.log("compara " + dataObject.favoriteProducts[a].name + " y " + actualProduct); 
+    if(dataObject.favoriteProducts[a].name.trim() == actualProduct)
+    {
+      indexProduct = a;
+    }
+  }
+  
+  console.log(indexProduct);
 
+  if(indexProduct == undefined)
+  {
+    textoDiv = "No se han registrado supermercados asociados a este producto.";
+  }
+  else
+  {
+
+    console.log(dataObject.favoriteProducts[indexProduct].market);
+
+    dataObject.favoriteProducts[indexProduct].market.map( market => {
+       textoDiv += `<li>
+                      <p>${market.nameMarket}</p>
+                      <p>${market.price} €</p>
+                    </li>`
+    } )
+   /*for (let i = 0; i < dataObject.favoriteProducts[indexProduct].market.length; i++)
+    {
+      textoDiv += "<li>"+ dataObject.favoriteProducts[indexProduct].market[i].nameMarket;
+      textoDiv += "->";
+      textoDiv += dataObject.favoriteProducts[indexProduct].market[i].price + "</li>";
+      textoDiv += "€</ul>";
+    }*/
+  }
+  div.innerHTML = textoDiv + "</ul>";
+  info.insertAdjacentElement("afterend", div);
 }
 
 const deleteInfo = (event) => {

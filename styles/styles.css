@@ -1,5 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 
+:root{
+  --main-color: #023047;
+  --button-color: #ffb703;
+}
+
 * {
   padding: 0px;
   margin: 0px;
@@ -11,11 +16,31 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: darkgray;
+  background-color: var(--main-color);
   padding: 15px 20px;
   font-size: 25px;
   height: 55px;
+  color: white;
 }
+
+/*Estilos para el boton añadir producto*/
+#add {
+  background-color: var(--button-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  border: none;
+  z-index: 2;
+  color: black; 
+  padding: 15px 15px;
+  border-radius: 60px;
+  width: 80%;
+  gap: 10px;  
+  box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+ 
+ }
+
 
 #addPopUp {
   width: 100vw;
@@ -76,18 +101,6 @@ nav {
   cursor: pointer;
 }
 
-#add {
-  background-color: cadetblue;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 16px;  
-  border: none;
-  z-index: 2;
-  color: black;
-  margin-top: -9px;
-  padding: 5px 15px;
- }
 
 .buttons-add {
   display: flex;
@@ -119,7 +132,7 @@ nav {
 }
 
 
-.list-products ul li {
+.list-products > ul  > li {
   list-style: none;
   width: 100%;
   background-color: antiquewhite;
@@ -128,6 +141,12 @@ nav {
   align-items: center;
   border-bottom: 1px solid #b3b3b3;
 
+}
+
+.priceMarket li{
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 10px;
 }
 
 .editMarket{
@@ -285,11 +304,14 @@ nav {
 }
 
 footer{
-  width: 100%;
-  height: 50px;
-  z-index: 5;
-  display: flex;
-  justify-content: center;
+     width: 100%;
+    height: 50px;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 20px;   
  
 }
 
@@ -308,6 +330,41 @@ footer{
   align-items: center;
   z-index: 20;
 }
+
+.popUpDelete i{
+  font-size: 70px;
+  color: #f43f3f;
+  margin-bottom: 10px;
+}
+
+.popUpDelete{
+  display: none;
+  width: 90%;
+  background-color: white;
+  z-index: 30;
+  text-align: center;
+  padding: 10px 0px;
+  border-radius: 10px;
+}
+
+
+.popUpDelete > div{
+ margin-top: 10px;
+ display: flex;
+ justify-content: center;
+ gap: 20px;
+}
+
+.popUpDelete div button{
+  padding: 8px 10px;
+  border: none;
+  border-radius: 10px;
+ }
+
+#buttonDelete{
+  color: white;
+  background-color: #f43f3f;
+ }
 
 .marketPopup
 {
