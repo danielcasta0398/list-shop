@@ -122,10 +122,11 @@ nav {
 .list-products {
   margin: 20px 15px;
   font-size: 20px;
-  height: 70vh;   
+  max-height: 74%;
   overflow: scroll;
-  
+  border-radius: 8px;
 }
+  
 
 .fa-star{
   color: black;
