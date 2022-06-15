@@ -125,6 +125,7 @@ nav {
   height: 70vh;
   overflow: scroll;
   border-radius: 8px;
+  box-shadow: rgb(100 100 111 / 20%) 2px 2px 9px 0px;
 }
   
 
@@ -145,6 +146,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #e5e5e5;
+  
 
 }
 
