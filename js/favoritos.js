@@ -36,7 +36,7 @@ const changeStateMarket = (event) => {
 };
 
 const listMarkets = () => {
-  dataObject.favoriteProducts.map((product) => {
+  dataObject.favoriteProducts.map((product, i) => {
     let classCheck;
     //Condional para cambiar el estado del icono cuando esta en la lista de la compra o no
     if (product.class == "fa-solid fa-circle-check") {
@@ -49,7 +49,7 @@ const listMarkets = () => {
     list.classList.add("listOptions");
     list.innerHTML += `
     <div style="display: flex; justify-content: space-between">
-      <div class="icon-plus"><i class="${classCheck}" onclick="addProductList(event)">
+      <div class="icon-plus" id="favoriteProduct${i}"><i class="${classCheck}" onclick="addProductList(event)">
        </i>${product.name}
       </div>
       <div class="icon-delete">
@@ -58,7 +58,7 @@ const listMarkets = () => {
       </div>
       </div>
       <div class="divOptions">
-      <button onclick="openPopupMarket()"> Supermercado </button>
+      <button onclick="openPopupMarket(${i})"> Supermercado </button>
       <button onclick="editFavorite(event)"> Editar </button>
       <button onclick="deleteFavorite(event)"> Eliminar </button>
       
@@ -85,29 +85,26 @@ const editFavorite = (
 
 //esta función se ejecuta cuando se hace clic en Ok
 
-const commitEdit = ( event,  nameFavoriteProduct ) => {
+const commitEdit = (event, nameFavoriteProduct) => {
   let favoriteProduct = event.path[1].firstChild.value; //en el div el input es el primer hijo y su valor es el nuevo nombre del supermercado
   //como no hay iconos a la izquierda, el input será el primer hijo del div
   let product;
 
   for (let i = 0; i < dataObject.favoriteProducts.length; i++) {
     if (
-      nameFavoriteProduct.trim() == dataObject.favoriteProducts[i].name.trim()     
+      nameFavoriteProduct.trim() == dataObject.favoriteProducts[i].name.trim()
     ) {
       //se busca el anterior valor del nombre y se quita del array
-      product = dataObject.favoriteProducts[i].name
+      product = dataObject.favoriteProducts[i].name;
       dataObject.favoriteProducts[i].name = favoriteProduct;
     }
 
-   for (let a = 0; a < dataObject.products.length; a++) {
+    for (let a = 0; a < dataObject.products.length; a++) {
       console.log(dataObject.products[a].name);
-      if (dataObject.products[a].name.trim() === product ) {
-          dataObject.products[a].name = favoriteProduct
+      if (dataObject.products[a].name.trim() === product) {
+        dataObject.products[a].name = favoriteProduct;
       }
-     
-   } 
-
-
+    }
   }
 
   localStorage.setItem("data", JSON.stringify(dataObject)); //se guarda el objeto en el localStorage
@@ -279,9 +276,13 @@ const closeOptions = () => {
   }
 };
 
-const openPopupMarket = (event) => {
+const openPopupMarket = (i) => {
   //console.log(dataObject.favoriteProducts[indiceProduct].market[0].price);
 
+  console.log(document.getElementById(`favoriteProduct${i}`).innerText);
+  let productFavorite = document.getElementById(
+    `favoriteProduct${i}`
+  ).innerText;
   //activar el div de fondo
   let background = document.getElementsByClassName("favoriteMarket")[0];
   background.style.display = "flex";
@@ -293,9 +294,40 @@ const openPopupMarket = (event) => {
   let texto = `<div id='iconClose' onclick='closeAll()'><i class="fa-solid fa-xmark"></i></div><ul id='favoriteListMarket'>`;
 
   //coger la lista de supermercados
+
+  //console.log(dataObject.favoriteProducts[i].market);
+
+  /*for (let i = 0; i < dataObject.favoriteProducts.length; i++) {
+    if (dataObject.favoriteProducts[i].market.length>0) {
+      for (let a = 0; a < dataObject.favoriteProducts[i].market.length; a++) {
+          console.log(a);
+        
+      }
+        
+    }
+  
+}*/
+
+
   dataObject.nameMarket.map((market, indice) => {
-    texto += `<li><div class='contentCheck'><input id='check${indice}' type='checkbox' value=${market}> <p>${market}</p></div> <div class='price'><input type='number' id='price${indice}' style='width: 70px;'>€</div></li>`;
+    const existMarkets = existMarket(i, market);
+    console.log(existMarkets);
+
+    for (let a = 0; a < dataObject.favoriteProducts[i].market.length; a++) {
+      if (productFavorite == dataObject.favoriteProducts[i].name) {
+      }
+    }
+
+    texto += `
+    <li>
+        <div class='contentCheck'><input id='check${indice}'
+         type='checkbox' value=${market} ${
+      existMarkets ? "checked" : ""
+    }> <p>${market}</p></div> 
+         <div class='price'><input type='number' id='price${indice}' value='${existMarkets}' style='width: 70px;'>€</div>
+    </li>`;
   });
+
   //crear botones aceptar y cancelar
   if (dataObject.nameMarket.length == 0) {
     texto +=
@@ -303,14 +335,33 @@ const openPopupMarket = (event) => {
     texto +=
       "</ul><div id='saveMarketsDiv'><button onclick='redirect()' id='saveMarketsButton'>Agregar Supermercado</button></div>";
   } else {
-    texto +=
-      "</ul><div id='saveMarketsDiv'><button onclick='saveMarkets(event)' id='saveMarketsButton'>Guardar</button></div>";
+    texto += `</ul><div id="saveMarketsDiv"><button onclick="saveMarkets(${i})" id="saveMarketsButton">Guardar</button></div>`;
   }
 
   divMarket.innerHTML = texto;
 
   //añadirlo al div
   app.insertAdjacentElement("beforeend", divMarket);
+};
+
+const existMarket = (i, market) => {
+  //console.log(dataObject.favoriteProducts[i].market[1].nameMarket, market);
+  for (let a = 0; a < dataObject.favoriteProducts[i].market.length; a++) {
+    if (dataObject.favoriteProducts[i].market[a].nameMarket == market) {
+      return dataObject.favoriteProducts[i].market[a].price;
+    }
+  }
+  console.log(dataObject.favoriteProducts[i]);
+};
+
+const existMarketUpdate = (i, market) => {
+  //console.log(dataObject.favoriteProducts[i].market[1].nameMarket, market);
+  for (let a = 0; a < dataObject.favoriteProducts[i].market.length; a++) {
+    if (dataObject.favoriteProducts[i].market[a].nameMarket == market) {
+      return dataObject.favoriteProducts[i].market[a].nameMarket;
+    }
+  }
+  console.log(dataObject.favoriteProducts[i]);
 };
 
 const redirect = () => {
@@ -323,21 +374,42 @@ const closeAll = () => {
   closePopUpMarket.innerHTML = "";
 };
 
-const saveMarkets = (event) => {
+const saveMarkets = (i) => {
   console.log(document.getElementById("favoriteListMarket").children);
-  let listMarket = document.getElementById("check0");
 
   for (
-    let i = 0;
-    i < document.getElementById("favoriteListMarket").children.length;
-    i++
+    let a = 0;
+    a < document.getElementById("favoriteListMarket").children.length;
+    a++
   ) {
-    if (document.getElementById(`check${i}`).checked === true) {
-      let objectMarket = {
-        nameMarket: dataObject.nameMarket[i],
-        price: document.getElementById(`price${i}`).value,
-      };
-      dataObject.favoriteProducts[indiceProduct].market.push(objectMarket);
+    console.log(a);
+    if (document.getElementById(`check${a}`).checked === true) {
+      let existMarkets = existMarketUpdate(
+        i,
+        document.getElementById(`check${a}`).value
+      );
+
+      console.log(existMarkets, document.getElementById(`check${a}`).value);
+      console.log(dataObject.favoriteProducts[i].market[3]);
+      
+     if (existMarkets ==  document.getElementById(`check${a}`).value) {
+
+      if (dataObject.favoriteProducts[i].market[a].price) {
+        dataObject.favoriteProducts[i].market[a].price = document.getElementById(`price${a}`).value;
+      }
+       
+       console.log(existMarkets, document.getElementById(`check${a}`).value.trim(), dataObject.favoriteProducts[i].market[a] );
+        // dataObject.favoriteProducts[i].market[a].price = document.getElementById(`price${a}`).value;       
+        
+      } else {
+        let objectMarket = {
+          nameMarket: dataObject.nameMarket[a],
+          price: document.getElementById(`price${a}`).value,
+        };
+        dataObject.favoriteProducts[indiceProduct].market.push(objectMarket);
+      }
+    } else{
+      
     }
     //console.log(event);
   }
