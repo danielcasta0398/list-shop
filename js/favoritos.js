@@ -271,8 +271,7 @@ const closeOptions = () => {
     if (lista[i].lastElementChild.style.display == "flex") {
       lista[i].lastElementChild.style.display = "";
     }
-
-    console.log(lista[i].lastElementChild);
+    
   }
 };
 
@@ -358,7 +357,10 @@ const existMarketUpdate = (i, market) => {
   //console.log(dataObject.favoriteProducts[i].market[1].nameMarket, market);
   for (let a = 0; a < dataObject.favoriteProducts[i].market.length; a++) {
     if (dataObject.favoriteProducts[i].market[a].nameMarket == market) {
-      return dataObject.favoriteProducts[i].market[a].nameMarket;
+      return {
+        indice : a,
+        name : dataObject.favoriteProducts[i].market[a].nameMarket
+      };
     }
   }
   console.log(dataObject.favoriteProducts[i]);
@@ -383,22 +385,21 @@ const saveMarkets = (i) => {
     a++
   ) {
     console.log(a);
+    console.log(dataObject.favoriteProducts[i].market[0]);
+    console.log(existMarkets.name);
     if (document.getElementById(`check${a}`).checked === true) {
       let existMarkets = existMarketUpdate(
         i,
         document.getElementById(`check${a}`).value
       );
-
-      console.log(existMarkets, document.getElementById(`check${a}`).value);
-      console.log(dataObject.favoriteProducts[i].market[3]);
+        
       
-     if (existMarkets ==  document.getElementById(`check${a}`).value) {
+      
+     if (existMarkets.name ==  document.getElementById(`check${a}`).value) {
 
-      if (dataObject.favoriteProducts[i].market[a].price) {
-        dataObject.favoriteProducts[i].market[a].price = document.getElementById(`price${a}`).value;
+      if (dataObject.favoriteProducts[i].market[existMarkets.indice].price) {        
+        dataObject.favoriteProducts[i].market[existMarkets.indice].price = document.getElementById(`price${a}`).value;
       }
-       
-       console.log(existMarkets, document.getElementById(`check${a}`).value.trim(), dataObject.favoriteProducts[i].market[a] );
         // dataObject.favoriteProducts[i].market[a].price = document.getElementById(`price${a}`).value;       
         
       } else {
@@ -408,10 +409,8 @@ const saveMarkets = (i) => {
         };
         dataObject.favoriteProducts[indiceProduct].market.push(objectMarket);
       }
-    } else{
-      
-    }
-    //console.log(event);
+    } 
+        //console.log(event);
   }
 
   localStorage.setItem("data", JSON.stringify(dataObject));
@@ -420,6 +419,7 @@ const saveMarkets = (i) => {
   //si tienen precio guardarlos
   //cerrar el div
   closeAll();
+  closeOptions();
 };
 
 listMarkets();

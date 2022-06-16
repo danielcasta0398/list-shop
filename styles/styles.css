@@ -218,6 +218,10 @@ nav {
   height: 70vh;
  }
 
+ #alertEmptyMarket > p {
+    margin: 0px 10px;
+ }
+
 #alertEmptyMarket i{
  font-size: 140px;
  color: white;
@@ -257,11 +261,11 @@ nav {
 .divOptions{  
   display: none;
   flex-direction: column;  
-  background-color: pink;
+  background-color: var(--button-color);
   position: absolute;
   z-index: 15;
   right: 20px;
-  border-radius: 8px;
+  border-radius: 8px; 
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
@@ -270,6 +274,7 @@ nav {
   background-color: transparent;
   padding: 5px 15px;
   font-size: 20px;
+  color: white;
   
 }
 
@@ -400,7 +405,7 @@ footer{
   position: relative;
   width: 90%; 
   height: 90%;
-  background-color: pink;
+  background-color: #fffaee;
   margin: 20px auto;
   border-radius: 15px;
   font-size: 20px;
@@ -448,6 +453,8 @@ footer{
 
 #saveMarketsButton
 {
+  background-color: var(--button-color);
+  color: white;
   font-size: 24px;
   padding: 10px;  
   bottom: 10px;
@@ -464,7 +471,9 @@ footer{
   justify-content: center;
   bottom: 0;
   display: flex;
+ 
 }
+
 
 .fa-circle-check{
   color: rgb(14, 107, 14);
