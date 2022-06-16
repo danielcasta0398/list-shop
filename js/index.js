@@ -143,6 +143,7 @@ const moreInfo = (event) => {
   let info = event.path[3];
   let actualProduct = info.innerText.trim();
   const div = document.createElement("div");
+  div.classList.add('messageListShop')
   let textoDiv = "<ul class='priceMarket'>";
   let indexProduct;
   for (let a = 0; a < dataObject.favoriteProducts.length; a++) {

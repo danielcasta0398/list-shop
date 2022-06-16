@@ -13,6 +13,31 @@ if (!data) {
 let dataObject = JSON.parse(localStorage.getItem("data"));
 console.log(dataObject);
 
+/*Esta funcion consulta todos los supermercados creados 
+y los carga en un div*/
+
+const listMarkets = () => {
+  dataObject.nameMarket.map((market, i) => {
+    const app = document.querySelector("#list");
+    const list = document.createElement("li");
+    list.classList.remove()
+    list.classList.add('editMarket')
+    list.innerHTML += `
+    <div style="display: flex; justify-content: space-between" id="${i}">
+       <div id="nameMarket${i}">${market}</div>
+      </div>
+      <div class="icon-delete">
+      <button onclick="deleteMarket(event)"><i class="fa-regular fa-trash-can"></i></button>     
+      <button onclick="editMarket(event, ${i})"><i class="fa-regular fa-pen-to-square"></i></button>  
+      </div>
+      </div>
+      
+      `;
+
+    app.insertAdjacentElement("beforeend", list);
+  });
+};
+
 const changeStateMarket = (event) => {
   //El evento se encarga de capturar el click
   //event.stopPropagation lo que hace es detener el evento del hijo
@@ -33,28 +58,6 @@ if (popUp.style.display == "") {
   }*/
 
   
-};
-
-const listMarkets = () => {
-  dataObject.nameMarket.map((market, i) => {
-    const app = document.querySelector("#list");
-    const list = document.createElement("li");
-    list.classList.remove()
-    list.classList.add('editMarket')
-    list.innerHTML += `
-    <div style="display: flex; justify-content: space-between" id="${i}">
-       <div>${market}</div>
-      </div>
-      <div class="icon-delete">
-      <button onclick="deleteMarket(event)"><i class="fa-regular fa-trash-can"></i></button>     
-      <button onclick="editMarket(event)"><i class="fa-regular fa-pen-to-square"></i></button>  
-      </div>
-      </div>
-      
-      `;
-
-    app.insertAdjacentElement("beforeend", list);
-  });
 };
 
 const deleteMarket = (event) => {
@@ -115,34 +118,37 @@ const addMarket = () => {
   
 };
 
-const editMarket = (event) => //esta función se ejecuta cuando se hace clic en el icono de editar
-{
-  console.log(event)
-  nameMarket = event.path[3].innerText; //se recoge el nombre que está guardado ahora
-  event.path[3].lastChild.style
-  console.log(event.path[3].lastElementChild);
-  event.path[3].innerHTML = `<div><input type=text value='${nameMarket}' class='changeMarket'><button id="change" onclick="commitEdit(event)">Ok</button></div>
+const editMarket = (event, i) => //esta función se ejecuta cuando se hace clic en el icono de editar
+{   
+  nameMarket = document.getElementById(`nameMarket${i}`).innerText;  //se recoge el nombre que está guardado ahora  
+  document.querySelector('.backgroundMarket').style.display = 'block';  
+  event.path[3].innerHTML = `
+              <div style="z-index : 7;display: flex;width: 100%;justify-content: space-between;">
+                      <input type=text value='${nameMarket}' class='changeMarket'><button id="change" onclick="commitEdit(event, ${i})">Ok</button>
+              </div>
   <div class="icon-delete">
 
   </div>`; //se sustituye el cuadro de texto con el nombre del supermercado por un input y un botón para poder editarlo
   
-  console.log(nameMarket);
+  event.path[3].classList.add('editMarketName')
+  
+ 
 }
 
-const commitEdit = (event) => //esta función se ejecuta cuando se hace clic en Ok
+const commitEdit = (event, i) => //esta función se ejecuta cuando se hace clic en Ok
 {
-  let market = event.path[1].firstChild.value; //en el div el input es el primer hijo y su valor es el nuevo nombre del supermercado
-  console.log(market);                        //como no hay iconos a la izquierda, el input será el primer hijo del div
-  for (let i = 0; i < dataObject.nameMarket.length; i++) {
-    if (nameMarket.trim() == dataObject.nameMarket[i].trim()) { //se busca el anterior valor del nombre y se quita del array
-      dataObject.nameMarket[i] = market
-    }
-  }
+  console.log(i);
+  let market = document.querySelector('.changeMarket').value; //en el div el input es el primer hijo y su valor es el nuevo nombre del supermercado
+ dataObject.nameMarket[i] = market
+                      //como no hay iconos a la izquierda, el input será el primer hijo del div
+  document.querySelector('.backgroundMarket').style.display = 'none';                      
+  
 
   localStorage.setItem("data", JSON.stringify(dataObject)); //se guarda el objeto en el localStorage
   resetMarkets(); //con esta función se borra los elementos listados
   listMarkets(); //se vuelven a imprimir todos los objetos y automáticamente vuelve el nombre a ser texto y no input
 }
+
 
 
 listMarkets();
